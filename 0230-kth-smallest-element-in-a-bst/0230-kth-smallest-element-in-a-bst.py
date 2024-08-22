@@ -10,20 +10,23 @@ class Solution:
         # better would be to order it first by the way we search and add each to array
         # even better would be to go left dfs first to stop when we reach it to not have to go through every node
         # to get it in order we need to use in order traversal (left, root, right)
+        self.result = None
+        self.count = 0
         def dfs(node):
-            if not node:
-                return None
+            if not node or self.result is not None:
+                return
             
             dfs(node.left)
-            array.append(node.val)
+            self.count += 1
+            if self.count == k:
+                self.result = node.val
+                return
             dfs(node.right)
             
-        array = []
+        
         dfs(root)
-        print(array)
-        # while len(array) < k:
             
-        return array[k-1]
+        return self.result
     
             
         

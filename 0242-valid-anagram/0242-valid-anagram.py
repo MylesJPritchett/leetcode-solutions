@@ -1,18 +1,18 @@
-class Solution(object):
-    def isAnagram(self, s, t):
-        """
-        :type s: str
-        :type t: str
-        :rtype: bool
-        """
-
-
-        if len(s) != len(t):
+class Solution:
+    def isAnagram(self, s: str, t: str) -> bool:
+        hashmap_s = {}
+        hashmap_t = {}
+        for char in s:
+            if char in hashmap_s:
+                hashmap_s[char] = hashmap_s[char] + 1
+            else:
+                hashmap_s[char] = 1
+        for char in t:
+            if char in hashmap_t:
+                hashmap_t[char] = hashmap_t[char] + 1
+            else:
+                hashmap_t[char] = 1
+        if hashmap_s == hashmap_t:
+            return True
+        else:
             return False
-
-        countS, countT = {}, {}
-
-        for i in range(len(s)):
-            countS[s[i]] = 1 + countS.get(s[i], 0)
-            countT[t[i]] = 1 + countT.get(t[i], 0)
-        return countS == countT
